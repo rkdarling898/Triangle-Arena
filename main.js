@@ -1,12 +1,7 @@
 import { Game } from "./game.js"
-const game = new Game()
-
-game.init()
-const player = game.pServ.players[0]
 
 //Setting up canvas
 const canvas = document.getElementById('game')
-const ctx = canvas.getContext('2d')
 
 const sizeCanvas = () => {
     canvas.width = 98*(window.innerWidth/100)
@@ -16,7 +11,12 @@ const sizeCanvas = () => {
 sizeCanvas()
 window.addEventListener('resize', sizeCanvas)
 
-//Game loop
+//Initialize game & gameloop
+const game = new Game()
+
+//game.init()
+const player = game.pServ.players[0]
+
 game.gameLoop()
 
 //Movement

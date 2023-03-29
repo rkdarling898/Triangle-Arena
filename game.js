@@ -7,12 +7,13 @@ export class Game {
         this.ctx = this.canvas.getContext('2d')
         this.pServ = new Player_Service(this.canvas)
         this.bServ = new Bullet_Service(this.canvas)
-        this.mainPlayer = this.pServ.createPlayer(0, 0, "red", this.bServ, this.bServ.shot_types.basic)
+        this.mainPlayer = this.pServ.createPlayer(this.canvas.width/2, this.canvas.height/2, "red", this.bServ, this.bServ.shot_types.basic, false)
         this.GameLoop = this.gameLoop.bind(this)
     }
 
     init () {
-        this.pServ.createPlayer(0, 0, "red", this.bServ, this.bServ.shot_types.basic)
+        this.pServ.createPlayer(this.canvas.width/2, this.canvas.height/2, "red", this.bServ, this.bServ.shot_types.basic, false)
+        console.log(this.pServ.players)
     }
 
     update () {
