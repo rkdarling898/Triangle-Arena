@@ -6,14 +6,14 @@ export class Bullet_Service {
             basic: {
                 size: 4,
                 spd: 10,
-                delay: 8,
+                delay: 16,
                 damage: 3
             },
             
             blaster: {
-                size: 10,
+                size: 14,
                 spd: 8,
-                delay: 20,
+                delay: 30,
                 damage: 7
             },
         
@@ -26,8 +26,8 @@ export class Bullet_Service {
         }
     }
 
-    createBullet (x, y, shot_type, color, direction) {
-        this.bullets.push(new Bullet(x, y, shot_type, color, direction))
+    createBullet (x, y, shot_type, color, angle) {
+        this.bullets.push(new Bullet(x, y, shot_type, color, angle))
     }
 
     deleteBullet (bullet) {
@@ -59,39 +59,27 @@ export class Bullet_Service {
 }
 
 export class Bullet {
-    constructor (x, y, shot_type, color, direction) {
+    constructor (x, y, shot_type, color, angle) {
         this.x = x
         this.y = y
         this.size = shot_type.size
         this.spd = shot_type.spd
         this.damage = shot_type.damage
         this.color = color
-        this.direction = direction
+        this.angle = angle
     }
 
     update () {
-            switch (this.direction) {
-                case 'up':
-                    this.y -= this.spd
-                    break
-                case 'down':
-                    this.y += this.spd
-                    break
-                case 'left':
-                    this.x -= this.spd
-                    break
-                case 'right':
-                    this.x += this.spd
-                    break
-            }
+        this.x += Math.cos(this.angle - (Math.PI/2)) * this.spd
+        this.y += Math.sin(this.angle - (Math.PI/2)) * this.spd
     }
 
     render (ctx) {
-        // ctx.beginPath()
-        // ctx.fillStyle = this.color
-        // ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        // ctx.fill()
-        // ctx.closePath()
-        console.log('bullets working')
+        ctx.beginPath()
+        ctx.fillStyle = this.color
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.closePath()
+        // console.log('bullets working')
     }
 }

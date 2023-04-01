@@ -14,7 +14,7 @@ window.addEventListener('resize', sizeCanvas)
 //Initialize game & gameloop
 const game = new Game()
 
-//game.init()
+game.init()
 const player = game.pServ.players[0]
 
 game.gameLoop()
